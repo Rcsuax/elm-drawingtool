@@ -21,9 +21,7 @@ main =
 
 
 type alias Model =
-    { mouseX : Int
-    , mouseY : Int
-    , circles : List Circle
+    { circles : List Circle
     }
 
 
@@ -35,9 +33,7 @@ type alias Circle =
 
 initialModel : Model
 initialModel =
-    { mouseX = 0
-    , mouseY = 0
-    , circles = []
+    { circles = []
     }
 
 
@@ -51,16 +47,12 @@ init =
 
 
 type Msg
-    = Position Int Int
-    | NewCircle Int Int
+    = NewCircle Int Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Position x y ->
-            ( { model | mouseX = x, mouseY = y }, Cmd.none )
-
         NewCircle x y ->
             ( { model | circles = Circle x y :: model.circles }, Cmd.none )
 
