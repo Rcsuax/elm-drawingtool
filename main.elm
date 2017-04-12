@@ -71,10 +71,7 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.batch
-        [ Mouse.moves (\{ x, y } -> Position x y)
-        , Mouse.clicks (\{ x, y } -> NewCircle x y)
-        ]
+    Mouse.moves (\{ x, y } -> NewCircle x y)
 
 
 
@@ -84,7 +81,7 @@ subscriptions model =
 renderAllCircles : Model -> Html Msg
 renderAllCircles model =
     List.map renderCircle model.circles
-        |> svg []
+        |> svg [ Svg.Attributes.width "100%", Svg.Attributes.height "100%" ]
 
 
 renderCircle : Circle -> Html Msg
@@ -94,7 +91,4 @@ renderCircle shape =
 
 view : Model -> Html Msg
 view model =
-    svg [ Svg.Attributes.width "100%", Svg.Attributes.height "100%" ]
-        [ circle [ cx (toString model.mouseX), cy (toString model.mouseY), r "20", fill "red" ] []
-        , renderAllCircles model
-        ]
+    renderAllCircles model
