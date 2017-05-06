@@ -73,7 +73,7 @@ subscriptions model =
 renderAllCircles : Model -> Html Msg
 renderAllCircles model =
     List.map renderCircle model.circles
-        |> svg [ Svg.Attributes.width "100%", Svg.Attributes.height "100%" ]
+        |> svg [ Svg.Attributes.width "100%", Svg.Attributes.height "100vh" ]
 
 
 renderCircle : Circle -> Html Msg
